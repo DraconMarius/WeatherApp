@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" />
+    <link rel="stylesheet" href="./style.css" />
+    <title>What's The Weather</title>
+</head>
+
+<body>
+    <header class="row text-center mx-auto">
+        <h1>Weather Dashboard</h1>
+    </header>
+    <div class="row">
+        <section id="search" class="col-3 mh-100">
+            <div id="qForm" class=" text-left">
+                <form>
+                    <div class="form-group">
+                        <label for="exampleFormControlInput1">Search for a City:</label>
+                        <input type="text" class="form-control" id="cities" placeholder="Search item here">
+                    </div>
+                    <button type="submit" class="btn btn-primary mw-100 col-12">Search</button>
+                </form>
+            </div>
+            <div id="saved">
+            </div>
+        </section>
+        <section id="display" class="col-9 border border-dark">
+            <div id="currenT"></div>
+            <div is="forecast"></div>
+        </section>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.slim.min.js"></script>
+    <script type="text/javascript" src="./script.js"></script>
+</body>
+
+</html>
