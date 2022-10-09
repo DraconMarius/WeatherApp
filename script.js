@@ -34,11 +34,31 @@ $(function saveCity() {
             var date = new Date(dt);
             var feh = (city.main.temp);
             var name = (city.name);
-            //display current weather condition
+            var wind = (city.wind.speed);
+            var hum = (city.main.humidity);
+            var icon = (city.weather[0].icon);
+            var weather = (city.weather[0].main);
+            //clearing condition
+            nowCon.empty();
+            //display condition
             nameBox.text(name); //name
             var displayD = $("<p>"); //date of retrieval
-            displayD.text("system time: " + date.toLocaleString());
+            displayD.text("sysTime: " + date.toLocaleString());
             nameBox.append(displayD);
+            var cTemp = $("<li class='list-group-item' id= 'cTemp'></li>");
+            cTemp.text("Temp: " + feh + " F");
+            nowCon.append(cTemp);
+            var cWind = $("<li class='list-group-item' id= 'cWind'></li>");
+            cWind.text("Wind: " + wind + " MPH");
+            nowCon.append(cWind);
+            var cHum = $("<li class='list-group-item' id= 'cHum'></li>");
+            cHum.text("Humidity: " + hum + " %");
+            nowCon.append(cHum);
+            //deciding what icon to show based on weather
+            var iconURL = $("<img src='http://openweathermap.org/img/wn/" + icon + "@2x.png' class='col-4'></img>");
+            nowCon.prepend(iconURL);
+
+
             //adding button for recall
             var recallBtn = $("<btn class='btn btn-info mw-100 col-12'>" + city.name + "</btn>");
             recallBtn.attr("data-citi", name);
