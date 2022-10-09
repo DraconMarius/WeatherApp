@@ -51,3 +51,21 @@ h1 {
     box-shadow: inset 1px 0px 5px rgb(255, 247, 239), 0 0 2px rgb(188, 185, 193);
 
 }
+
+.btn {
+    box-shadow: inset 1px 0px 15px rgb(255, 219, 147), 0 0 20px rgb(129, 190, 255);
+}
+
+#cityN {
+    text-shadow: 0 0 8px rgb(140, 140, 140),
+        0 0 5px rgba(146, 235, 255, 0.77),
+        5px 0 8px rgba(255, 143, 31, 0.83),
+        0px 5px 10px rgba(154, 86, 255, 0.907);
+}
+
+.fiveDate {
+    text-shadow: 0 0 8px rgb(140, 140, 140),
+        0 0 5px rgba(146, 235, 255, 0.77),
+        5px 0 8px rgba(255, 143, 31, 0.83),
+        0px 5px 10px rgba(154, 86, 255, 0.907);
+}
