@@ -6,33 +6,57 @@
 // - [ ] Search has to be repeatable
 
 //get some containers
+var nameBox = $("#cityN");
+var nowCon = $("#nowCond");
+var futCon = $("#futCond")
 var nowBox = $("#current");
 var foreBox = $("#forecast");
-var searchF = $(".form-group")
-var savBox = $("#saved")
-var btn = $(".btn");
-var cityBox = $("#cities")
-//fom user, press button, 
+var searchF = $(".form-group");
+var savBox = $("#saved");
+var btn = $(".savebtn");
+var cityBox = $("#cities");
+var goTime = false;
+//fom user press button 
 $(function saveCity() {
     $(btn).on("click", function (event) {
         event.preventDefault(); // so won't refresh
         var cityName = cityBox.val().trim();
-        var fetchCity = "http://api.openweathermap.org/geo/1.0/direct?q=" + cityName + "&limit=3&appid=62a0c9b6ffbd35cd6b887afaa5e015c1"
+        var fetchWeather = "http://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&appid=62a0c9b6ffbd35cd6b887afaa5e015c1&units=imperial&"
+        var fetchCW = ""
         console.log(cityName);
         // localStorage.setItem(id, toSave);
-        $.ajax({
-            url: fetchCity,
+        $.when($.ajax({
+            url: fetchWeather,
             method: 'GET',
         }).then(function (city) {
-            var lon = (city[0].lon);
-            var lat = (city[0].lat);
-            var name = (city[0].name);
-            console.log('test')
             console.log(city);
-            console.log(city[0].lon);
-            console.log(city[0].lat);
-            localStorage.setItem(name, [lon, lat])
-        });
+            var dt = eval(city.dt * 1000);
+            var date = new Date(dt);
+            var feh = (city.main.temp);
+            var name = (city.name);
+            //display current weather condition
+            nameBox.text(name); //name
+            var displayD = $("<p>"); //date of retrieval
+            displayD.text("system time: " + date.toLocaleString());
+            nameBox.append(displayD);
+            //adding button for recall
+            var recallBtn = $("<btn class='btn btn-info mw-100 col-12'>" + city.name + "</btn>");
+            recallBtn.attr("data-citi", name);
+            recallBtn.text(name);
+            $(savBox).append(recallBtn);
+            console.log('test')
+            console.log(date.toLocaleString());
+            console.log(feh);
+            // console.log(city);
+            // localStorage.setItem(name, [name, lon, lat]);
+            // console.log(JSON.stringify(lon));
+            // console.log(JSON.stringify(lat));
+            // $.ajax({
+            //     url:
+            // })
+            // }).then(function (city) {//might as well make the button for recall here
+            //then get the next
+        }));
 
 
 

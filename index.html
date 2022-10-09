@@ -24,16 +24,21 @@
                         <label for="exampleFormControlInput1">Search for a City:</label>
                         <input type="text" class="form-control" id="cities" placeholder="Name,(state,/country)">
                     </div>
-                    <button type="submit" class="btn btn-primary mw-100 col-12">Search</button>
+                    <button type="submit" class="btn btn-primary mw-100 col-12 savebtn">Search</button>
                 </form>
             </div>
             <div id="saved">
             </div>
         </section>
         <section id="display" class="col-9 border border-dark">
-            <div id="current"></div>
-            <div is="forecast"></div>
-        </section>
+            <div id="current" class="row">
+                <h2 id="cityN" class="col-3"></h2>
+                <ul id="nowCond"></ul>
+            </div>
+            <div id="forecast" class="row"></div>
+            <ul id="futCond"></ul>
+    </div>
+    </section>
     </div>
 
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.slim.min.js"></script> -->
