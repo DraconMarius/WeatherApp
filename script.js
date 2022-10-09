@@ -1,8 +1,8 @@
-// - [ ] need a form input for user to search for a city, and show the current+5dayforecast
-// - [ ] after searching for a city, it should saved under the form to be searched again// WHEN I view current weather conditions for that city
-// - [ ] we need the `city name`, `the date`, `an icon`weather conditions,
+// - [X] need a form input for user to search for a city, and show the current+5dayforecast
+// - [X] after searching for a city, it should saved under the form to be searched again// WHEN I view current weather conditions for that city
+// - [X] we need the `city name`, `the date`, `an icon`weather conditions,
 // the temperature, the humidity, and the wind speed ^^
-// - [ ] 5-day forecast that displays the date, an icon, the temperature, the wind speed, and the humidity
+// - [X] 5-day forecast that displays the date, an icon, the temperature, the wind speed, and the humidity
 // - [ ] Search has to be repeatable
 
 //get some containers
@@ -55,7 +55,7 @@ $(function saveCity() {
             cHum.text("Humidity: " + hum + " %");
             nowCon.append(cHum);
             //deciding what icon to show based on weather
-            var iconURL = $("<img src='http://openweathermap.org/img/wn/" + icon + "@2x.png' class='col-4'></img>");
+            var iconURL = $("<img src='http://openweathermap.org/img/wn/" + icon + "@2x.png' class='min-vw-15 mx-auto d-block' title='Current Weather: " + weather + "'></img>");
             nowCon.prepend(iconURL);
             //adding button for recall
             var recallBtn = $("<btn class='btn btn-info mw-100 col-12'>" + city.name + "</btn>");
@@ -78,44 +78,34 @@ $(function saveCity() {
             method: 'GET',
         }).then(function (forecast) {
             // console.log(forecast);
+            // clear container;
+            futCon.empty();
+            var aux = 1;
             // displayD.text("sysTime: " + date.toLocaleString());
             for (var i = 0; i < forecast.list.length; i++) {
-                var aux = 1;
                 var dt = eval(forecast.list[i].dt * 1000);
                 console.log(dt);
                 var T = new Date(dt);
-                console.log(T);
-                var date = ("<div>" + T.getMonth() + "/" + T.getDate() + "</div>");
+                console.log(T); //we then use getMonth + 1 cuz apparently it counts from 0 index)
+                var date = ("<div class='text-center'>" + (T.getMonth() + 1) + "/" + T.getDate() + "</div>");
                 console.log(date); // to display 5-day forecast dates
-                var feh = (forecast.list[i].main.temp);
-                var wind = (forecast.list[i].wind.speed);
-                var hum = (forecast.list[i].main.humidity);
+                var feh = $("<li class='list-group-item'>Temp: " + forecast.list[i].main.temp + " F</li>");
+                var wind = $("<li class='list-group-item'>Wind: " + forecast.list[i].wind.speed + " MPH</li>");
+                var hum = $("<li class='list-group-item'>Hum :" + forecast.list[i].main.humidity + " %</li>");
                 var icon = (forecast.list[i].weather[0].icon);
                 var cond = (forecast.list[i].weather[0].main);
-                var iconURL = $("<img src='http://openweathermap.org/img/wn/" + icon + "@2x.png'></img>");
-                var card = $("<li class ='card'></li>");
-                card.attr("data-day", aux);
-                card.
-                    card.append(iconURL);
+                var iconURL = $("<img src='http://openweathermap.org/img/wn/" + icon + "@2x.png' class = 'min-vw-15 mx-auto d-block' title='Day " + aux + " Weather: " + cond + "'></img>");
+                var card = $("<p class ='card mh-100 h-auto d-inline-block align-items-center justify-content-center'></p>");
+                // card.attr("data-day", aux);
+                card.append(iconURL);
                 card.append(date);
                 card.append(feh);
                 card.append(wind);
                 card.append(hum);
+                card.prepend(iconURL);
                 futCon.append(card);
                 aux++;
                 i = i + 7;
-
-                // card.append(date, feh, wind, hum);
-                // cTemp.text("Temp: " + feh + " F");
-                // nowCon.append(fTemp);
-                // var fWind = $("<li class='list-group-item' id= 'cWind'></li>");
-                // cWind.text("Wind: " + wind + " MPH");
-                // nowCon.append(fWind);
-                // var fHum = $("<li class='list-group-item' id= 'cHum'></li>");
-                // cHum.text("Humidity: " + hum + " %");
-                // nowCon.append(cHum);
-                // //deciding what icon to show based on weather
-                // nowCon.prepend(iconURL);
 
 
 

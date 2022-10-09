@@ -8,13 +8,17 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Megrim&font-effect-fire-animation&family=Orbitron&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="./style.css" />
     <title>What's The Weather</title>
 </head>
 
 <body>
-    <header class="row text-center mx-auto">
-        <h1>Weather Dashboard</h1>
+    <header class="row mx-auto">
+        <h1 class="col-12 text-center">Weather Dashboard</h1>
     </header>
     <div class="row">
         <section id="search" class="col-3 mh-100">
@@ -22,7 +26,7 @@
                 <form>
                     <div class="form-group">
                         <label for="exampleFormControlInput1">Search for a City:</label>
-                        <input type="text" class="form-control" id="cities" placeholder="Name,(state,/country)">
+                        <input type="text" class="form-control" id="cities" placeholder="Name, (state, / country)">
                     </div>
                     <button type="submit" class="btn btn-primary mw-100 col-12 savebtn">Search</button>
                 </form>
@@ -30,15 +34,15 @@
             <div id="saved">
             </div>
         </section>
-        <section id="display" class="col-9 border border-dark container-fluid">
+        <section id="display" class="col-8 border border-white container-fluid ">
             <div id="current" class="row">
                 <h2 id="cityN" class="col-6"></h2>
-                <ul id="nowCond" class="col-6"></ul>
+                <ul id="nowCond" class="col-5"></ul>
             </div>
-            <div id="forecast" class="row"></div>
-            <ul id="futCond"></ul>
-    </div>
-    </section>
+            <div id=" forecast" class="row align-items-center ">
+                <ul id="futCond" class="row align-items-center list-group-flush"></ul>
+            </div>
+        </section>
     </div>
 
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.slim.min.js"></script> -->

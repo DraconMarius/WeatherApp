@@ -1,5 +1,53 @@
-img {
-    max-width: 20px;
+* {
+    font-family: 'Orbitron', sans-serif;
+    box-sizing: border-box;
 }
 
-;
+img {
+    background-color: transparent;
+}
+
+body {
+    background-color: rgb(33, 33, 33);
+    color: white;
+    font-size: large;
+}
+
+h1 {
+    font-family: 'Megrim', cursive;
+    font-weight: bolder;
+    text-shadow: 0 0 8px white,
+        0 0 15px rgb(218, 218, 234),
+        5px 0 15px rgb(255, 234, 171),
+        0px 5px 20px rgb(169, 148, 255);
+}
+
+#display {
+    box-shadow: inset 1px 0px 25px rgb(255, 247, 239), 0 0 20px rgb(188, 185, 193);
+}
+
+.card {
+    background-color: transparent;
+    box-shadow: inset 1px 0px 25px rgb(255, 247, 239), 0 0 20px rgb(188, 185, 193);
+
+}
+
+.card li {
+    background-color: transparent;
+    box-shadow: inset 1px 0px 5px rgb(255, 247, 239), 0 0 2px rgb(188, 185, 193);
+
+}
+
+#nowCond {
+    background-color: transparent;
+    box-shadow: inset 1px 0px 25px rgb(255, 247, 239), 0 0 20px rgb(188, 185, 193);
+
+    margin-top: 20px;
+    /* margin-right: 5px; */
+}
+
+#nowCond li {
+    background-color: transparent;
+    box-shadow: inset 1px 0px 5px rgb(255, 247, 239), 0 0 2px rgb(188, 185, 193);
+
+}
