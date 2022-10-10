@@ -23,6 +23,7 @@ h1 {
 }
 
 #display {
+    /* cursor: url("https://www.cursor.cc/cursor3d/138251.png"), auto; */
     box-shadow: inset 1px 0px 25px rgb(255, 247, 239), 0 0 20px rgb(188, 185, 193);
 }
 
