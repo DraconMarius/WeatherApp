@@ -15,7 +15,7 @@ var searchF = $(".form-group");
 var savBox = $("#saved");
 var btn = $(".savebtn");
 var cityBox = $("#cities");
-var goTime = false;
+var countID = 1; //using count var to store info in localStorage for easier recall
 //fom user press button 
 $(function saveCity() {
     $(btn).on("click", function fetch(event) {
@@ -28,8 +28,15 @@ $(function saveCity() {
         $.when($.ajax({
             url: fetchWeather,
             method: 'GET',
+            error: function (error) {
+                console.log(error);
+                var eCode = error.responseJSON.cod;
+                var eMess = error.responseJSON.message;
+                alert("Warning!" + "\n" + "Error-Code: " + eCode + "\n" + eMess + "\n" + "please try again");
+                return;
+            }
         }).then(function (city) {
-            // console.log(city);
+            console.log(city);
             var dt = eval(city.dt * 1000);
             var date = new Date(dt);
             var feh = (city.main.temp);
@@ -59,9 +66,12 @@ $(function saveCity() {
             nowCon.prepend(iconURL);
             //adding button for recall
             var recallBtn = $("<btn class='btn btn-outline-warning mw-100 col-12 mb-3 recallBtn'>" + city.name + "</btn>");
-            recallBtn.attr("data-citi", name);
+            recallBtn.attr("data-recall", countID);
             recallBtn.text(name);
+            localStorage.setItem(countID, name);
             $(savBox).append(recallBtn);
+            countID++;
+            // localStorage.setItem()
             // fetching 5 day forecast.
         }).then($.ajax({
             url: fetchFuture,
@@ -72,7 +82,7 @@ $(function saveCity() {
             futCon.empty();
             var aux = 1;
             // displayD.text("sysTime: " + date.toLocaleString());
-            // oh no, I should have just print the dt_text
+            // oh no, I should have just printed the dt_text
             ////starts at 6am utc (thats why i = 1)
             for (var i = 1; i < forecast.list.length; i++) {
                 var dt = eval(forecast.list[i].dt * 1000);
@@ -107,7 +117,8 @@ $(function saveCity() {
 //Same function but taking in the data-citi attribute from the recall btn
 $(function (event) {
     $(savBox).on("click", ".recallBtn", function () {
-        var cityName = $(this).attr("data-citi");
+        var recallID = $(this).attr("data-recall");
+        var cityName = localStorage.getItem(recallID);
         // console.log(cityName);
         var fetchWeather = "https://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&appid=62a0c9b6ffbd35cd6b887afaa5e015c1&units=imperial"
         var fetchFuture = "https://api.openweathermap.org/data/2.5/forecast?q=" + cityName + "&appid=62a0c9b6ffbd35cd6b887afaa5e015c1&units=imperial"
@@ -185,6 +196,20 @@ $(function (event) {
         ))
     })
 });
+//when page loads, it takes any local stored data and create those buttons again, so the button of 
+//any saved cities will persist upon reload, ready to be pressed to to execute
+//the search once again
+$(function () {
+    saved = localStorage;
+    for (var i = 0; i < saved.length; i++) {
+        savedName = localStorage.getItem(countID);
+        var recallBtn = $("<btn class='btn btn-outline-warning mw-100 col-12 mb-3 recallBtn'>" + savedName + "</btn>");
+        recallBtn.attr("data-recall", countID);
+        recallBtn.text(savedName);
+        $(savBox).append(recallBtn);
+        countID++;
+    }
+})
 
 //lets fetch some data
 //using the geo api within openweather to translate city name to long/lat
